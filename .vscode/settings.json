@@ -1,0 +1,46 @@
+{
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "search.exclude": {
+        "**/node_modules": true,
+    },
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".eslintrc",
+                ".jsbeautifyrc"
+            ],
+            "ext": [
+                "js",
+                "json",
+                "tsx"
+            ]
+        },
+        "css": [
+            "css",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html"
+        ]
+    },
+    "path-autocomplete.pathMappings": {
+        "src": "${workspace}/src",
+        "common": "${workspace}/src/common",
+        "config": "${workspace}/config",
+        "modules": "${workspace}/src/modules"
+    },
+    "path-autocomplete.enableFolderTrailingSlash": false,
+    "editor.formatOnSave": true,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 140,
+    "javascript.format.enable": false,
+    "files.trimTrailingWhitespace": true,
+    "eslint.enable": true
+}

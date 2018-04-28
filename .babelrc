@@ -1,0 +1,17 @@
+{
+  "presets": ["es2017", "env"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "src": "./src",
+          "common": "./src/common",
+          "config": "./config",
+          "modules": "./src/modules"
+        }
+      }
+    ]
+  ]
+}
