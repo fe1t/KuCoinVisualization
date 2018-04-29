@@ -5,26 +5,25 @@ import logo from './logo.svg'
 import Api from './common/api/manager'
 import Immutable from 'immutable'
 
-const raw = {
-  name: 'Hello World',
-  children: [{ name: 'pispa pispa', children: null }]
-}
-
-const fetchData = async url => {
-  const blocks = (await Api.get(url)).data
-  return blocks
-}
-
-function MyBlockchain(props) {
-  let data = fetchData(props.url)
-  return data.then(d => <Blockchain width="1435" height="800" raw={d} />)
-}
-
 class App extends Component {
+  state = {
+    raw: undefined
+  }
+
+  fetchData = async url => (await Api.get(url)).data
+
+  async componentDidMount() {
+    const raw = await this.fetchData('http://localhost:23000/blocks')
+    this.setState({ raw })
+  }
+
   render() {
+    if (!this.state.raw) {
+      return null
+    }
     return (
       <div className="App">
-        <MyBlockchain url="http://localhost:23000/blocks" />
+        <Blockchain width="1435" height="800" raw={this.state.raw} />
       </div>
     )
   }
