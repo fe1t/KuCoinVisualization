@@ -16,9 +16,11 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "NODE_ID=3003 react-scripts start"
   },
   "devDependencies": {
+    "@vx/scale": "^0.0.161",
+    "@vx/tooltip": "^0.0.161",
     "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
@@ -37,6 +39,7 @@
     "https": "^1.0.0",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
+    "moment": "^2.22.1",
     "snakeize": "^0.1.0",
     "typescript-styled-plugin": "^0.6.3"
   }

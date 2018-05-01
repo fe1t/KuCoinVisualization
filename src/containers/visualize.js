@@ -5,12 +5,19 @@ import { LinkHorizontal } from '@vx/shape'
 import { hierarchy } from 'd3-hierarchy'
 import { LinearGradient } from '@vx/gradient'
 
-function Node({ node, events }) {
+const Node = mouseOverCallback => ({ node, events }) => {
   const width = 40
   const height = 20
   return (
     <Group top={node.x} left={node.y}>
-      {node.depth === 0 && <circle r={12} fill="url('#lg')" />}
+      {node.depth === 0 && (
+        <circle
+          r={12}
+          fill="url('#lg')"
+          onMouseOver={event => mouseOverCallback(event, node)}
+          onMouseLeave={event => mouseOverCallback(event, undefined)}
+        />
+      )}
       {node.depth !== 0 && (
         <rect
           height={height}
@@ -23,9 +30,8 @@ function Node({ node, events }) {
           strokeDasharray={!node.children ? '2,2' : '0'}
           strokeOpacity={!node.children ? 0.6 : 1}
           rx={!node.children ? 10 : 0}
-          onClick={() => {
-            alert(`clicked: ${JSON.stringify(node.data.name)}`)
-          }}
+          onMouseOver={event => mouseOverCallback(event, node)}
+          onMouseLeave={event => mouseOverCallback(event, undefined)}
         />
       )}
       <text
@@ -56,9 +62,11 @@ export default ({
     left: 30,
     right: 40,
     bottom: 80
-  }
+  },
+  mouseOverCallback
 }) => {
   const data = hierarchy(raw)
+  if (width < 10) return null
   return (
     <svg width={width} height={height}>
       <LinearGradient id="lg" from="#fd9b93" to="#fe6e9e" />
@@ -68,7 +76,7 @@ export default ({
         left={margin.left}
         root={data}
         size={[height - margin.top - margin.bottom, width - margin.left - margin.right]}
-        nodeComponent={Node}
+        nodeComponent={Node(mouseOverCallback)}
         linkComponent={Link}
       />
     </svg>

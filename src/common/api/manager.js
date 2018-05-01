@@ -5,8 +5,6 @@ import axios from 'axios'
 import https from 'https'
 import snakeize from 'snakeize'
 
-const camelcaseKeys = require('camelcase-keys')
-
 const api = axios.create({
   baseURL: '',
   transformRequest: axios.defaults.transformRequest.concat((data, headers) => {
