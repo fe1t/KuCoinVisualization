@@ -19,7 +19,7 @@ class App extends Component {
     setInterval(async () => {
       const raw = await this.fetchData(url)
       this.setState({ raw })
-    }, 15000)
+    }, 4000)
     this.setState({ raw })
   }
 
@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(process.env)
     const nodeData = this.state.nodeData
     if (!this.state.raw) {
       return null
@@ -57,7 +58,7 @@ class App extends Component {
             <p> Block Nonce: {JSON.stringify(nodeData.nonce)} </p>
             <p>
               Block Timestamp: {JSON.stringify(nodeData.timestamp)} (
-              {moment().format('LLLL')})
+              {moment.unix(JSON.stringify(nodeData.timestamp)).format('LLL')})
             </p>
           </div>
         )}
